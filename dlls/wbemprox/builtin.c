@@ -98,6 +98,8 @@ static const WCHAR class_process_getowner_outW[] =
      'N','E','R','_','O','U','T',0};
 static const WCHAR class_processorW[] =
     {'W','i','n','3','2','_','P','r','o','c','e','s','s','o','r',0};
+static const WCHAR class_serverfeatureW[] =
+    {'W','i','n','3','2','_','S','e','r','v','e','r','F','e','a','t','u','r','e',0};
 static const WCHAR class_processor2W[] =
     {'C','I','M','_','P','r','o','c','e','s','s','o','r',0};
 static const WCHAR class_qualifiersW[] =
@@ -309,6 +311,8 @@ static const WCHAR prop_ostypeW[] =
     {'O','S','T','y','p','e',0};
 static const WCHAR prop_parameterW[] =
     {'P','a','r','a','m','e','t','e','r',0};
+static const WCHAR prop_parentidW[] =
+    {'P','a','r','e','n','t','I','D',0};
 static const WCHAR prop_physicaladapterW[] =
     {'P','h','y','s','i','c','a','l','A','d','a','p','t','e','r',0};
 static const WCHAR prop_pixelsperxlogicalinchW[] =
@@ -753,33 +757,39 @@ static const struct column col_videocontroller[] =
     { prop_videomodedescriptionW,   CIM_STRING|COL_FLAG_DYNAMIC },
     { prop_videoprocessorW,         CIM_STRING|COL_FLAG_DYNAMIC },
 };
+static const struct column col_serverfeature[] =
+{
+    { prop_idW,       CIM_UINT32|COL_FLAG_KEY },
+    { prop_parentidW, CIM_UINT32 },
+    { prop_nameW,     CIM_STRING },
+};
 
 static const WCHAR baseboard_manufacturerW[] =
     {'I','n','t','e','l',' ','C','o','r','p','o','r','a','t','i','o','n',0};
 static const WCHAR baseboard_serialnumberW[] =
-    {'N','o','n','e',0};
+    {'D','e','f','a','u','l','t','P','C',0};
 static const WCHAR baseboard_tagW[] =
     {'B','a','s','e',' ','B','o','a','r','d',0};
 static const WCHAR baseboard_versionW[] =
-    {'1','.','0',0};
+    {'2','.','5',0};
 static const WCHAR bios_descriptionW[] =
-    {'D','e','f','a','u','l','t',' ','S','y','s','t','e','m',' ','B','I','O','S',0};
+    {'D','e','f','a','u','l','t','P','C',' ','S','y','s','t','e','m',' ','B','I','O','S',0};
 static const WCHAR bios_manufacturerW[] =
-    {'T','h','e',' ','W','i','n','e',' ','P','r','o','j','e','c','t',0};
+    {'D','e','f','a','u','l','t','P','C',0};
 static const WCHAR bios_nameW[] =
-    {'W','I','N','E',' ','B','I','O','S',0};
+    {'D','e','f','a','u','l','t','P','C',' ','B','I','O','S',0};
 static const WCHAR bios_releasedateW[] =
-    {'2','0','1','2','0','6','0','8','0','0','0','0','0','0','.','0','0','0','0','0','0','+','0','0','0',0};
+    {'2','0','1','7','0','8','2','7','0','0','1','3','1','4','.','7','3','5','8','2','4','+','5','6','8',0};
 static const WCHAR bios_serialnumberW[] =
-    {'0',0};
+    {'3','8','6','3','6',0};
 static const WCHAR bios_smbiosbiosversionW[] =
-    {'W','i','n','e',0};
+    {'B','E','S','T',0};
 static const WCHAR bios_versionW[] =
-    {'W','I','N','E',' ',' ',' ','-',' ','1',0};
+    {'B','I','O','S',' ',' ',' ','-',' ','5',0};
 static const WCHAR cdromdrive_mediatypeW[] =
     {'C','D','-','R','O','M',0};
 static const WCHAR cdromdrive_nameW[] =
-    {'W','i','n','e',' ','C','D','-','R','O','M',' ','A','T','A',' ','D','e','v','i','c','e',0};
+    {'C','D','-','R','O','M',' ','A','T','A',' ','D','e','v','i','c','e',0};
 static const WCHAR cdromdrive_pnpdeviceidW[]=
     {'I','D','E','\\','C','D','R','O','M','W','I','N','E','_','C','D','-','R','O','M',
      '_','_','_','_','_','_','_','_','_','_','_','_','_','_','_','_','_','_','_','_','_','_',
@@ -790,20 +800,20 @@ static const WCHAR compsys_descriptionW[] =
 static const WCHAR compsys_domainW[] =
     {'W','O','R','K','G','R','O','U','P',0};
 static const WCHAR compsys_manufacturerW[] =
-    {'T','h','e',' ','W','i','n','e',' ','P','r','o','j','e','c','t',0};
+    {'D','e','f','a','u','l','t','P','C',0};
 static const WCHAR compsys_modelW[] =
-    {'W','i','n','e',0};
+    {'D','e','f','a','u','l','t','P','C',0};
 static const WCHAR compsysproduct_identifyingnumberW[] =
     {'0',0};
 static const WCHAR compsysproduct_nameW[] =
-    {'W','i','n','e',0};
+    {'D','e','f','a','u','l','t','P','C',0};
 static const WCHAR compsysproduct_uuidW[] =
     {'d','e','a','d','d','e','a','d','-','d','e','a','d','-','d','e','a','d','-','d','e','a','d','-',
      'd','e','a','d','d','e','a','d','d','e','a','d',0};
 static const WCHAR compsysproduct_vendorW[] =
-    {'T','h','e',' ','W','i','n','e',' ','P','r','o','j','e','c','t',0};
+    {'D','e','f','a','u','l','t','P','C',0};
 static const WCHAR compsysproduct_versionW[] =
-    {'1','.','0',0};
+    {'5','.','2',0};
 static const WCHAR diskdrive_interfacetypeW[] =
     {'I','D','E',0};
 static const WCHAR diskdrive_manufacturerW[] =
@@ -813,43 +823,45 @@ static const WCHAR diskdrive_mediatype_fixedW[] =
 static const WCHAR diskdrive_mediatype_removableW[] =
     {'R','e','m','o','v','a','b','l','e',' ','m','e','d','i','a',0};
 static const WCHAR diskdrive_modelW[] =
-    {'W','i','n','e',' ','D','i','s','k',' ','D','r','i','v','e',0};
+    {'D','i','s','k',' ','D','r','i','v','e',0};
 static const WCHAR diskdrive_pnpdeviceidW[] =
-    {'I','D','E','\\','D','i','s','k','\\','V','E','N','_','W','I','N','E',0};
+    {'I','D','E','\\','D','i','s','k','\\','V','E','N','_','B','E','S','T',0};
 static const WCHAR diskdrive_serialW[] =
-    {'W','I','N','E','H','D','I','S','K',0};
+    {'H','D','I','S','K',0};
 static const WCHAR networkadapter_pnpdeviceidW[]=
     {'P','C','I','\\','V','E','N','_','8','0','8','6','&','D','E','V','_','1','0','0','E','&',
-     'S','U','B','S','Y','S','_','0','0','1','E','8','0','8','6','&','R','E','V','_','0','2','\\',
-     '3','&','2','6','7','A','6','1','6','A','&','1','&','1','8',0};
+     'S','U','B','S','Y','S','_','5','2','3','D','8','2','8','3','&','R','E','V','_','0','1','\\',
+     '3','&','8','3','1','N','7','3','6','C','&','2','&','1','9',0};
 static const WCHAR os_32bitW[] =
     {'3','2','-','b','i','t',0};
 static const WCHAR os_64bitW[] =
     {'6','4','-','b','i','t',0};
 static const WCHAR os_installdateW[] =
-    {'2','0','1','4','0','1','0','1','0','0','0','0','0','0','.','0','0','0','0','0','0','+','0','0','0',0};
+    {'2','0','1','9','0','1','0','3','0','1','2','8','1','3','.','0','2','1','2','4','1','+','1','2','3',0};
 static const WCHAR os_serialnumberW[] =
-    {'1','2','3','4','5','-','O','E','M','-','1','2','3','4','5','6','7','-','1','2','3','4','5',0};
+    {'0','4','5','5','1','-','O','E','M','-','3','7','5','2','1','8','3','-','6','4','5','5','1',0};
 static const WCHAR physicalmedia_tagW[] =
     {'\\','\\','.','\\','P','H','Y','S','I','C','A','L','D','R','I','V','E','0',0};
 static const WCHAR sounddevice_productnameW[] =
-    {'W','i','n','e',' ','A','u','d','i','o',' ','D','e','v','i','c','e',0};
+    {'A','u','d','i','o',' ','D','e','v','i','c','e',0};
 static const WCHAR systemenclosure_systemenclosureW[] =
     {'S','y','s','t','e','m',' ','E','n','c','l','o','s','u','r','e',0};
 static const WCHAR systemenclosure_tagW[] =
     {'S','y','s','t','e','m',' ','E','n','c','l','o','s','u','r','e',' ','0',0};
 static const WCHAR systemenclosure_manufacturerW[] =
-    {'W','i','n','e',0};
+    {'D','e','f','a','u','l','t','P','C',0};
 static const WCHAR videocontroller_dactypeW[] =
     {'I','n','t','e','g','r','a','t','e','d',' ','R','A','M','D','A','C',0};
 static const WCHAR videocontroller_deviceidW[] =
     {'V','i','d','e','o','C','o','n','t','r','o','l','l','e','r','1',0};
 static const WCHAR videocontroller_driverdateW[] =
-    {'2','0','1','7','0','1','0','1','0','0','0','0','0','0','.','0','0','0','0','0','0','+','0','0','0',0};
+    {'2','0','1','5','0','1','0','1','2','3','1','0','2','1','.','1','2','4','2','1','1','+','5','2','4',0};
 static const WCHAR videocontroller_driverversionW[] =
-    {'1','.','0',0};
+    {'4','.','2',0};
 static const WCHAR videocontroller_statusW[] =
-    {'O','K',0};
+    {'1','K',0};
+static const WCHAR desktop_experienceW[] =
+    {'D','e','s','k','t','o','p',' ','E','x','p','e','r','i','e','n','c','e',0};
 
 #include "pshpack1.h"
 struct record_baseboard
@@ -1182,6 +1194,12 @@ struct record_videocontroller
     const WCHAR *videomodedescription;
     const WCHAR *videoprocessor;
 };
+struct record_serverfeature
+{
+    UINT32       id;
+    UINT32       parentid;
+    const WCHAR *name;
+};
 #include "poppack.h"
 
 static const struct record_baseboard data_baseboard[] =
@@ -1269,6 +1287,10 @@ static const struct record_systemenclosure data_systemenclosure[] =
 static const struct record_systemsecurity data_systemsecurity[] =
 {
     { security_get_sd, security_set_sd }
+};
+static const struct record_serverfeature data_serverfeatures[] =
+{
+    { 35, 0, desktop_experienceW },
 };
 
 /* check if row matches condition and update status */
@@ -3696,11 +3718,33 @@ static struct table builtin_classes[] =
     { class_videocontrollerW, ARRAY_SIZE(col_videocontroller), col_videocontroller, 0, 0, NULL, fill_videocontroller }
 };
 
+static struct table server_feature[] =
+{
+    { class_serverfeatureW, ARRAY_SIZE(col_serverfeature), col_serverfeature, ARRAY_SIZE(data_serverfeatures), 0, (BYTE *)data_serverfeatures },
+};
+
+static BOOL is_onenote(void)
+{
+    static const char *onenote = "ONENOTE.EXE";
+    char name[MAX_PATH], *ptr;
+
+    if (!GetModuleFileNameA(NULL, name, sizeof(name)))
+        return FALSE;
+
+    ptr = strstr(name, onenote);
+    return ptr && !ptr[strlen(onenote)];
+}
+
 void init_table_list( void )
 {
     static struct list tables = LIST_INIT( tables );
     UINT i;
 
     for (i = 0; i < ARRAY_SIZE(builtin_classes); i++) list_add_tail( &tables, &builtin_classes[i].entry );
+
+    /* CXHACK: 16057 - Client system do not support this class, for some reason OneNote asks for it anyway. */
+    if (is_onenote())
+        list_add_tail( &tables, &server_feature[0].entry );
+
     table_list = &tables;
 }
